@@ -6,7 +6,7 @@
       rhel8cis_skip_for_travis: false
       is_container: false
   pre_tasks:
-  - block:
+  - block: 
     - name: Fetching OS name and version details
       shell: cat /etc/os-release
       register: release
@@ -25,7 +25,7 @@
       with_items: "{{ release.stdout_lines }}"
       when: "item.split('=')[0] == 'VERSION'"
     - name: If RHEL 8 server
-      debug:
+      debug: 
         msg: "RHEL 8 server"
       when:
       - "'Red Hat' in OS_name"
@@ -42,7 +42,7 @@
   - { role: RHEL7-CIS, when: "'7' in OS_version.split('.')[0]"}
   - { role: RHEL8-CIS, when: "'8' in OS_version.split('.')[0]"}
     #  - { role: RHEL7-CIS, when: '7' in OS_version.split }
-#    vars:
+#    vars:  
 #      rhel8cis_system_is_container: "{{ is_container | default(false) }}"
 #  rhel8cis_skip_for_travis: false
 #    when:
